@@ -14,7 +14,7 @@ public class GrammarParser {
     int lastWordCharacterIndex = 0;
 
     public List<GrammarError> parse(String text) {
-        ArrayList<GrammarError> errors = new ArrayList<>();
+        ArrayList<GrammarError> errors = new ArrayList<GrammarError>();
 
 
         for (int i = 0; i < text.length(); i++) {
