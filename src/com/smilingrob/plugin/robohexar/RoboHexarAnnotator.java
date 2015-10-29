@@ -4,6 +4,7 @@ import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.impl.source.PsiMethodImpl;
 import com.intellij.psi.javadoc.PsiDocComment;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,8 +15,11 @@ import java.util.List;
  */
 public class RoboHexarAnnotator implements Annotator {
 
+    PsiElement lastElement = null;
+
     @Override
     public void annotate(@NotNull PsiElement psiElement, @NotNull AnnotationHolder annotationHolder) {
+
         if (psiElement instanceof PsiDocComment) {
             PsiDocComment docComment = (PsiDocComment) psiElement;
             String text = docComment.getText();
@@ -29,6 +33,17 @@ public class RoboHexarAnnotator implements Annotator {
                 annotationHolder.createErrorAnnotation(textRange, error.messageForError());
             }
         }
+
+        if (psiElement instanceof PsiMethodImpl) {
+            if (((PsiMethodImpl) psiElement).getDocComment() == null) {
+                PsiElement name = ((PsiMethodImpl) psiElement).getNameIdentifier();
+                if (name != null) {
+                    annotationHolder.createErrorAnnotation(name, "Java Doc!");
+                }
+            }
+        }
+
+        lastElement = psiElement;
     }
 
 }
