@@ -20,50 +20,71 @@ public class RoboHexarAnnotator implements Annotator {
             boolean inSentence = false;
             boolean hasPunctuation = false;
             boolean hasCommentText = false;
-            int lastCharacterIndex = 0;
+            int lastWordCharacterIndex = 0;
 
             for (int i = 0; i < text.length(); i++) {
                 char character = text.charAt(i);
                 char previousCharacter = i > 0 ? text.charAt(i - 1) : ' ';
                 if (!inSentence) {
-                    if (character >= 'a' && character <= 'z') {
-                        TextRange textRange = new TextRange(startRange + i, startRange + i + 1);
-                        annotationHolder.createErrorAnnotation(textRange, "Capitalize");
+                    if (isWordCharacter(character)) {
+                        if (isLowerCase(character)) {
+                            if (isSpace(previousCharacter)) {
+                                TextRange textRange = new TextRange(startRange + i, startRange + i + 1);
+                                annotationHolder.createErrorAnnotation(textRange, "Capitalize");
+                            } else if (previousCharacter == '*') {
+                                TextRange textRange = new TextRange(startRange + i, startRange + i + 1);
+                                annotationHolder.createErrorAnnotation(textRange, "Space before text.");
+                            }
+                        }
                         inSentence = true;
                         hasPunctuation = false;
                         hasCommentText = true;
-                        lastCharacterIndex = i;
-                    } else if (character >= 'A' && character <= 'Z') {
-                        inSentence = true;
-                        hasPunctuation = false;
-                        hasCommentText = true;
-                        lastCharacterIndex = i;
+                        lastWordCharacterIndex = i;
                     }
                 } else {
-                    if (character == '.' || character == '!' || character == '?') {
+                    if (isEndingPunctuation(character)) {
                         inSentence = false;
                         hasPunctuation = true;
-                    } else if ((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z')) {
-                        lastCharacterIndex = i;
+                    } else if (isWordCharacter(character)) {
+                        lastWordCharacterIndex = i;
+                    }
+                    if (character == '@' && previousCharacter == ' ') {
+                        // end of main comment block
+                        if (!hasPunctuation) {
+                            TextRange textRange = new TextRange(startRange + lastWordCharacterIndex,
+                                    startRange + lastWordCharacterIndex + 1);
+                            annotationHolder.createErrorAnnotation(textRange, "Periods");
+                        }
                     }
                 }
-                if (character == '@' && previousCharacter == ' ') {
-                    // end of main comment block
-                    if (hasCommentText && !hasPunctuation) {
-                        TextRange textRange = new TextRange(startRange + lastCharacterIndex,
-                                startRange + lastCharacterIndex + 1);
-                        annotationHolder.createErrorAnnotation(textRange, "Periods");
-                    }
-                }
-
             }
 
             if (hasCommentText && !hasPunctuation) {
-                TextRange textRange = new TextRange(startRange + lastCharacterIndex,
-                        startRange + lastCharacterIndex + 1);
+                TextRange textRange = new TextRange(startRange + lastWordCharacterIndex,
+                        startRange + lastWordCharacterIndex + 1);
                 annotationHolder.createErrorAnnotation(textRange, "Add a period.");
             }
 
         }
+    }
+
+    static boolean isWordCharacter(char character) {
+        return (character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z');
+    }
+
+    static boolean isUpperCase(char character) {
+        return character >= 'A' && character <= 'Z';
+    }
+
+    static boolean isLowerCase(char character) {
+        return character >= 'a' && character <= 'z';
+    }
+
+    static boolean isEndingPunctuation(char character) {
+        return character == '.' || character == '!' || character == '?';
+    }
+
+    static boolean isSpace(char character) {
+        return character == ' ' || character == '\n' || character == '\r' || character == '\t';
     }
 }
