@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.smilingrob.plugin.robohexar</id>
   <name>Robo Hexar</name>
-  <version>1.03</version>
+  <version>1.04</version>
   <vendor email="smilingrob@gmail.com" url="http://smilingrob.com">Robert Wallis</vendor>
 
   <description><![CDATA[
@@ -9,7 +9,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <li>Fixed "capitalize" error on @ params</li>
+      <li>Added "Java-Doc" matcher.</li>
+      <li>Fixed "Capitalize" error on @ params</li>
       <li>Compiled using JDK 7, so that it works on Hexar's machine.</li>
     ]]></change-notes>
 
