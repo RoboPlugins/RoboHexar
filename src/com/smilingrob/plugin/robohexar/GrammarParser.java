@@ -10,6 +10,7 @@ public class GrammarParser {
     boolean inSentence = false;
     boolean hasPunctuation = false;
     boolean hasCommentText = false;
+    boolean onNewLine = false;
     int lastWordCharacterIndex = 0;
 
     public List<GrammarError> parse(String text) {
@@ -24,8 +25,6 @@ public class GrammarParser {
                     if (isLowerCase(character)) {
                         if (isSpace(previousCharacter)) {
                             errors.add(new GrammarError(i, i + 1, GrammarError.Type.CAPITALIZATION));
-                        } else if (previousCharacter == '*') {
-                            errors.add(new GrammarError(i, i + 1, GrammarError.Type.DOC_SPACING));
                         }
                     }
                     inSentence = true;
@@ -45,6 +44,18 @@ public class GrammarParser {
                     if (!hasPunctuation) {
                         errors.add(new GrammarError(lastWordCharacterIndex, lastWordCharacterIndex + 1, GrammarError.Type.END_PUNCTUATION));
                     }
+                }
+            }
+            if (onNewLine) {
+                if (isWordCharacter(character)) {
+                    if (previousCharacter == '*') {
+                        errors.add(new GrammarError(i, i + 1, GrammarError.Type.DOC_SPACING));
+                    }
+                    onNewLine = false;
+                }
+            } else {
+                if (isNewLineCharacter(character)) {
+                    onNewLine = true;
                 }
             }
         }
@@ -70,6 +81,10 @@ public class GrammarParser {
 
     static boolean isSpace(char character) {
         return character == ' ' || character == '\n' || character == '\r' || character == '\t';
+    }
+
+    static boolean isNewLineCharacter(char character) {
+        return character == '\n' || character == '\r';
     }
 
 }
