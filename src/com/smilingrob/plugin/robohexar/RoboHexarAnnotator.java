@@ -36,14 +36,27 @@ public class RoboHexarAnnotator implements Annotator {
 
         if (psiElement instanceof PsiMethodImpl) {
             if (((PsiMethodImpl) psiElement).getDocComment() == null) {
-                PsiElement name = ((PsiMethodImpl) psiElement).getNameIdentifier();
-                if (name != null) {
-                    annotationHolder.createErrorAnnotation(name, "Java Doc!");
+
+                if (!hasOverrideAnnotation(psiElement)) {
+                    PsiElement name = ((PsiMethodImpl) psiElement).getNameIdentifier();
+                    if (name != null) {
+                        annotationHolder.createErrorAnnotation(name, "Java Doc!");
+                    }
                 }
             }
         }
 
         lastElement = psiElement;
+    }
+
+    private boolean hasOverrideAnnotation(@NotNull PsiElement psiElement) {
+        for (PsiElement childElement : psiElement.getChildren()) {
+            String name = childElement.getText();
+            if (name != null && name.contains("@Override")) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
