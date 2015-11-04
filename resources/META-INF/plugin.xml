@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.smilingrob.plugin.robohexar</id>
   <name>Robo Hexar</name>
-  <version>1.06</version>
+  <version>1.07</version>
   <vendor email="smilingrob@gmail.com" url="http://smilingrob.com">Robert Wallis</vendor>
 
   <description><![CDATA[

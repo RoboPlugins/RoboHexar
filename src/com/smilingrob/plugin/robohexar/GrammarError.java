@@ -1,12 +1,14 @@
 package com.smilingrob.plugin.robohexar;
 
+import com.intellij.openapi.util.TextRange;
+
 /**
  * Model to hold detected grammar errors.
  */
 public class GrammarError {
-    public int indexStart;
-    public int indexEnd;
-    public Type type;
+    private int indexStart;
+    private int indexEnd;
+    private Type type;
 
     public enum Type {
         CAPITALIZATION,
@@ -14,13 +16,25 @@ public class GrammarError {
         DOC_SPACING
     }
 
+    /**
+     * Model to hold detected grammar errors.
+     *
+     * @param indexStart string index where error starts.
+     * @param indexEnd   string index where error ends.
+     * @param type       GrammarError.Type of the error.
+     */
     public GrammarError(int indexStart, int indexEnd, Type type) {
         this.indexStart = indexStart;
         this.indexEnd = indexEnd;
         this.type = type;
     }
 
-    public String stringForType(Type type) {
+    /**
+     * Return the message to be displayed to the user for this error.
+     *
+     * @return message to be displayed to the user.
+     */
+    public String messageForError() {
         switch (type) {
             case CAPITALIZATION:
                 return "Capitalize.";
@@ -33,7 +47,12 @@ public class GrammarError {
         }
     }
 
-    public String messageForError() {
-        return stringForType(type);
+    /**
+     * Generate a TextRange of where to highlight the error.
+     *
+     * @return TextRange of where to highlight the error.
+     */
+    public TextRange rangeOfError() {
+        return new TextRange(indexStart, indexEnd);
     }
 }
