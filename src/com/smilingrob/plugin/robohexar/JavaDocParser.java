@@ -1,6 +1,7 @@
 package com.smilingrob.plugin.robohexar;
 
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.impl.source.PsiClassImpl;
 import com.intellij.psi.impl.source.PsiMethodImpl;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +29,14 @@ public class JavaDocParser {
                     if (name != null) {
                         errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
                     }
+                }
+            }
+        } else if (psiElement instanceof PsiClassImpl) {
+            PsiClassImpl psiClass = (PsiClassImpl) psiElement;
+            if (psiClass.getDocComment() == null) {
+                PsiElement name = psiClass.getNameIdentifier();
+                if (name != null) {
+                    errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
                 }
             }
         }

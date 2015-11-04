@@ -17,12 +17,12 @@ public class RoboHexarAnnotator implements Annotator {
 
         GrammarParser grammarParser = new GrammarParser();
         for (GrammarError error : grammarParser.parse(psiElement)) {
-            annotationHolder.createErrorAnnotation(error.rangeOfError(), error.messageForError());
+            annotationHolder.createWarningAnnotation(error.rangeOfError(), error.messageForError());
         }
 
         JavaDocParser javaDocParser = new JavaDocParser();
         for (JavaDocError error : javaDocParser.parse(psiElement)) {
-            annotationHolder.createErrorAnnotation(error.getElementToTag(), error.messageForError());
+            annotationHolder.createWarningAnnotation(error.getElementToTag(), error.messageForError());
         }
 
         lastElement = psiElement;

@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.smilingrob.plugin.robohexar</id>
   <name>Robo Hexar</name>
-  <version>1.07</version>
+  <version>1.08</version>
   <vendor email="smilingrob@gmail.com" url="http://smilingrob.com">Robert Wallis</vendor>
 
   <description><![CDATA[
@@ -9,7 +9,9 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <li>No longer "Java-Doc" warning methods with @Override.</li>
+      <li>Warnings not errors.</li>
+      <li>No longer adding "Java-Doc" warnings to getters and setters.</li>
+      <li>No longer adding "Java-Doc" warnings methods with @Override.</li>
       <li>Compiling for Java 6 because my Java 7 thing didn't work.</li>
       <li>Added "Java-Doc" matcher.</li>
       <li>Fixed "Capitalize" error on @ params</li>
