@@ -21,9 +21,10 @@ public class JavaDocParser {
     public List<JavaDocError> parse(PsiElement psiElement) {
         ArrayList<JavaDocError> errors = new ArrayList<JavaDocError>();
         if (psiElement instanceof PsiMethodImpl) {
-            if (((PsiMethodImpl) psiElement).getDocComment() == null) {
-                if (!hasOverrideAnnotation(psiElement)) {
-                    PsiElement name = ((PsiMethodImpl) psiElement).getNameIdentifier();
+            PsiMethodImpl psiMethod = (PsiMethodImpl) psiElement;
+            if (psiMethod.getDocComment() == null) {
+                if (!hasOverrideAnnotation(psiMethod) && !isGetterOrSetter(psiMethod)) {
+                    PsiElement name = psiMethod.getNameIdentifier();
                     if (name != null) {
                         errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
                     }
@@ -33,11 +34,29 @@ public class JavaDocParser {
         return errors;
     }
 
-    private boolean hasOverrideAnnotation(@NotNull PsiElement psiElement) {
-        for (PsiElement childElement : psiElement.getChildren()) {
+    // not sure why it's not asking for JD here.
+    private boolean hasOverrideAnnotation(@NotNull PsiMethodImpl psiMethod) {
+        for (PsiElement childElement : psiMethod.getChildren()) {
             String name = childElement.getText();
             if (name != null && name.contains("@Override")) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param psiMethodImpl method node.
+     * @return true if it is a getter or a setter.
+     */
+    private boolean isGetterOrSetter(@NotNull PsiMethodImpl psiMethodImpl) {
+        PsiElement nameElement = psiMethodImpl.getNameIdentifier();
+        if (nameElement != null) {
+            String name = nameElement.getText();
+            if (name != null) {
+                if (name.startsWith("get") || name.startsWith("set")) {
+                    return true;
+                }
             }
         }
         return false;
