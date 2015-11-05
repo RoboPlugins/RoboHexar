@@ -24,7 +24,7 @@ public class JavaDocParser {
         if (psiElement instanceof PsiMethodImpl) {
             PsiMethodImpl psiMethod = (PsiMethodImpl) psiElement;
             if (psiMethod.getDocComment() == null) {
-                if (!hasOverrideAnnotation(psiMethod) && !isGetterOrSetter(psiMethod)) {
+                if (!hasOverrideAnnotation(psiMethod) && !hasTestAnnotation(psiMethod) && !isGetterOrSetter(psiMethod)) {
                     PsiElement name = psiMethod.getNameIdentifier();
                     if (name != null) {
                         errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
@@ -49,6 +49,24 @@ public class JavaDocParser {
             String name = childElement.getText();
             if (name != null && name.contains("@Override")) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     */
+    private boolean hasTestAnnotation(@NotNull PsiMethodImpl psiMethod) {
+        for (PsiElement childElement : psiMethod.getChildren()) {
+            String name = childElement.getText();
+            if (name != null) {
+                if (name.contains("@Test")) {
+                    return true;
+                } else if (name.contains("@") && name.contains("Test")) {
+                    // matches @SmallTest @MediumTest etc...
+                    return true;
+                }
             }
         }
         return false;

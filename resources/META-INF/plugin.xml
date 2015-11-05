@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.smilingrob.plugin.robohexar</id>
   <name>Robo Hexar</name>
-  <version>1.08</version>
+  <version>1.09</version>
   <vendor email="smilingrob@gmail.com" url="http://smilingrob.com">Robert Wallis</vendor>
 
   <description><![CDATA[
@@ -9,13 +9,12 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <li>Warnings not errors.</li>
-      <li>No longer adding "Java-Doc" warnings to getters and setters.</li>
-      <li>No longer adding "Java-Doc" warnings methods with @Override.</li>
-      <li>Compiling for Java 6 because my Java 7 thing didn't work.</li>
-      <li>Added "Java-Doc" matcher.</li>
-      <li>Fixed "Capitalize" error on @ params</li>
-      <li>Compiled using JDK 7, so that it works on Hexar's machine.</li>
+      <li>1.09 - No longer adding "Java-Doc" warnings to @Test methods.</li>
+      <li>1.08 - Warnings not errors.</li>
+      <li>1.07 - No longer adding "Java-Doc" warnings to getters and setters.</li>
+      <li>1.06 - No longer adding "Java-Doc" warnings methods with @Override.</li>
+      <li>1.05 - Added "Java-Doc" matcher.</li>
+      <li>1.04 - Fixed "Capitalize" error on @ params</li>
     ]]></change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
