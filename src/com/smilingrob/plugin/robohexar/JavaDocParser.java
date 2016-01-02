@@ -24,7 +24,10 @@ public class JavaDocParser {
         if (psiElement instanceof PsiMethodImpl) {
             PsiMethodImpl psiMethod = (PsiMethodImpl) psiElement;
             if (psiMethod.getDocComment() == null) {
-                if (!hasOverrideAnnotation(psiMethod) && !hasTestAnnotation(psiMethod) && !isGetterOrSetter(psiMethod)) {
+                if (!hasOverrideAnnotation(psiMethod)
+                        && !isTestMethod(psiMethod)
+                        && !hasTestAnnotation(psiMethod)
+                        && !isGetterOrSetter(psiMethod)) {
                     PsiElement name = psiMethod.getNameIdentifier();
                     if (name != null) {
                         errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
@@ -43,7 +46,6 @@ public class JavaDocParser {
         return errors;
     }
 
-    // not sure why it's not asking for JD here.
     private boolean hasOverrideAnnotation(@NotNull PsiMethodImpl psiMethod) {
         for (PsiElement childElement : psiMethod.getChildren()) {
             String name = childElement.getText();
@@ -55,7 +57,10 @@ public class JavaDocParser {
     }
 
     /**
+     * If it is a test method because it has @Test or @Medium test etc.
      *
+     * @param psiMethod method to test.
+     * @return true if it is a test method.
      */
     private boolean hasTestAnnotation(@NotNull PsiMethodImpl psiMethod) {
         for (PsiElement childElement : psiMethod.getChildren()) {
@@ -70,6 +75,16 @@ public class JavaDocParser {
             }
         }
         return false;
+    }
+
+    /**
+     * If it is a test method because it's name and package.
+     *
+     * @param psiMethod method node.
+     * @return true if it is a test method.
+     */
+    private boolean isTestMethod(@NotNull PsiMethodImpl psiMethod) {
+        return psiMethod.getName().startsWith("test");
     }
 
     /**

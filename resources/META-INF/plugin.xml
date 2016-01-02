@@ -9,6 +9,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <li>1.10 - Fix warning filter for testSomething() methods that are in test.</li>
       <li>1.09 - No longer adding "Java-Doc" warnings to @Test methods.</li>
       <li>1.08 - Warnings not errors.</li>
       <li>1.07 - No longer adding "Java-Doc" warnings to getters and setters.</li>

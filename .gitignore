@@ -1,1 +1,11 @@
-/*.jar
+# Compiled
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+/out/
+
+# IDE
+.idea
