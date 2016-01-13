@@ -20,8 +20,28 @@ public class GrammarParserTest extends LightCodeInsightFixtureTestCase {
     }
 
     public void testJavaDocNoWarnings() throws Exception {
-        // GIVEN a java file with bad punctuation
+        // GIVEN a java file with good punctuation
         myFixture.configureByFiles("JavaDocGood.java");
+
+        // WHEN highlighting is done
+        List<HighlightInfo> highlights = myFixture.doHighlighting();
+        ArrayList<HighlightInfo> warnings = new ArrayList<HighlightInfo>();
+        for (HighlightInfo highlight : highlights) {
+            if (highlight.getSeverity() == HighlightSeverity.WARNING) {
+                warnings.add(highlight);
+            }
+        }
+
+        // THEN we should not get any warnings
+        if (warnings.size() > 0) {
+            assertNull(warnings.get(0).getDescription());
+            assertNull(warnings.get(0));
+        }
+    }
+
+    public void testJavaDocNoWarningsWithLinks() throws Exception {
+        // GIVEN a java file with good punctuation and links
+        myFixture.configureByFiles("JavaDocGoodWithLinks.java");
 
         // WHEN highlighting is done
         List<HighlightInfo> highlights = myFixture.doHighlighting();
