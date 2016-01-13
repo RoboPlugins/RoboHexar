@@ -5,7 +5,7 @@
 public class JavaDocGood {
 
     /**
-     * This is function with good grammar
+     * This is a function with good grammar
      * in the Java docs.
      *
      * @param param This paramater also has good grammar in the Java docs.
