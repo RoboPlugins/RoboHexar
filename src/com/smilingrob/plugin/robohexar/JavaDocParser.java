@@ -21,7 +21,7 @@ public class JavaDocParser {
      * @return list of errors to mark.
      */
     public List<JavaDocError> parse(PsiElement psiElement) {
-        ArrayList<JavaDocError> errors = new ArrayList<>();
+        ArrayList<JavaDocError> errors = new ArrayList<JavaDocError>();
         if (psiElement instanceof PsiMethodImpl) {
             PsiMethodImpl psiMethod = (PsiMethodImpl) psiElement;
             if (psiMethod.getDocComment() == null) {
