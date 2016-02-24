@@ -10,6 +10,9 @@ public class GrammarError {
     private int indexEnd;
     private Type type;
 
+    /**
+     * What kind of error this is highlighting.
+     */
     public enum Type {
         CAPITALIZATION,
         END_PUNCTUATION,

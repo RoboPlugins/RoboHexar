@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.smilingrob.plugin.robohexar</id>
   <name>Robo Hexar</name>
-  <version>1.11</version>
+  <version>1.11.1</version>
   <vendor email="smilingrob@gmail.com" url="http://smilingrob.com">Robert Wallis</vendor>
 
   <description><![CDATA[
@@ -9,7 +9,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <li>1.11 - No "Java-Doc" warnings on constructors.</li>
+      <li>1.11.1 - No "Java-Doc" warnings on constructors. Test updates.</li>
       <li>1.10 - Fix warning filter for testSomething() methods that are in test.</li>
       <li>1.09 - No longer adding "Java-Doc" warnings to @Test methods.</li>
       <li>1.08 - Warnings not errors.</li>

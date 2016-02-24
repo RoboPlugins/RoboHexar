@@ -9,6 +9,9 @@ public class JavaDocError {
     private PsiElement elementToTag;
     private ErrorType errorType;
 
+    /**
+     * What kind of JavaDoc error is this highlighting.
+     */
     public enum ErrorType {
         MISSING_JAVA_DOC
     }
