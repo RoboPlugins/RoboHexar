@@ -19,7 +19,7 @@ public class JavaDocParserTest extends LightCodeInsightFixtureTestCase {
         boolean highlightedSomething = false;
 
         // GIVEN a file with no java docs
-        myFixture.configureByFiles("JavaDocTestData.java");
+        myFixture.testHighlighting("JavaDocTestData.java");
 
         // WHEN highlighting is done
         List<HighlightInfo> highlights = myFixture.doHighlighting();
@@ -34,5 +34,9 @@ public class JavaDocParserTest extends LightCodeInsightFixtureTestCase {
         }
 
         assertTrue("Should have had some highlight.", highlightedSomething);
+    }
+
+    public void testJavaDocTestData() {
+        myFixture.testHighlighting("JavaDocTestData.java");
     }
 }

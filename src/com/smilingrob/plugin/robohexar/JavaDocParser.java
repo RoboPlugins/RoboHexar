@@ -55,9 +55,9 @@ public class JavaDocParser {
      * @return true if the given method has the Override annotation.
      */
     private boolean hasOverrideAnnotation(@NotNull PsiMethodImpl psiMethod) {
-        for (PsiElement childElement : psiMethod.getChildren()) {
-            String name = childElement.getText();
-            if (childElement instanceof PsiAnnotation && name != null && name.equals("@Override")) {
+        for (PsiAnnotation annotation : psiMethod.getModifierList().getAnnotations()) {
+            String name = annotation.getText();
+            if (name != null && name.equals("@Override")) {
                 return true;
             }
         }
@@ -72,13 +72,10 @@ public class JavaDocParser {
      * @return true if it is a test method.
      */
     private boolean hasTestAnnotation(@NotNull PsiMethodImpl psiMethod) {
-        for (PsiElement childElement : psiMethod.getChildren()) {
-            String name = childElement.getText();
-            if (childElement instanceof PsiAnnotation && name != null) {
-                if (name.startsWith("@") && name.endsWith("Test")) {
-                    // Matches @Test, @SmallTest, @MediumTest, etc...
-                    return true;
-                }
+        for (PsiAnnotation annotation : psiMethod.getModifierList().getAnnotations()) {
+            String name = annotation.getText();
+            if (name != null && name.startsWith("@") && name.endsWith("Test")) {
+                return true;
             }
         }
         return false;
