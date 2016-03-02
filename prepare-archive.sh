@@ -16,5 +16,5 @@ zip ${GH_PROJECT_NAME}.zip ${GH_PROJECT_NAME}/
 cp ${GH_PROJECT_NAME}.zip clonedir/
 cd clonedir
 git add ${GH_PROJECT_NAME}.zip
-git commit -m "Committed by Travis-CI"
+git commit -a -m "Committed by Travis-CI"
 git push https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_REPO_NAME} 2>&1
