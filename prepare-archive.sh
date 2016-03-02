@@ -5,7 +5,12 @@ git config --global user.email $GIT_AUTHOR_EMAIL
 # Checkout Repo to deploy to
 echo "\n1. Checkout Repo to deploy to"
 cd /tmp
+
+# CLeanup tmp directory
 rm -rf clonedir
+rm -rf ${GH_PROJECT_NAME}
+
+
 git clone https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_REPO_NAME} clonedir
 cd clonedir
 git reset
