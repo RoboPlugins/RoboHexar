@@ -25,8 +25,11 @@ public class RoboHexarAnnotator implements Annotator {
             annotationHolder.createWarningAnnotation(error.getElementToTag(), error.messageForError());
         }
 
+        ModelParser modelParser = new ModelParser();
+        for (ModelError error : modelParser.parse(psiElement)) {
+            annotationHolder.createWarningAnnotation(error.getElementToTag(), error.messageForError());
+        }
+
         lastElement = psiElement;
     }
-
-
 }
