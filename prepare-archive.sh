@@ -14,11 +14,11 @@ git pull https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_REPO_NAME}
 # Create Directories for zip
 echo "\n 2. Create Directories for zip"
 cd /tmp
-mkdir ${GH_PROJECT_NAME}
-mkdir ${GH_PROJECT_NAME}/libs
+mkdir -p /tmp/${GH_PROJECT_NAME}/libs
 
 # Take a look.
 echo "\n 3. Take a look."
+cd /tmp
 ls $TRAVIS_BUILD_DIR/build/libs
 ls -la $TRAVIS_BUILD_DIR/libs/*.jar
 
