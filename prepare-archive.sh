@@ -4,7 +4,7 @@ git config --global user.email $GIT_AUTHOR_EMAIL
 
 cd /tmp
 rm -rf clonedir
-git clone https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} clonedir
+git clone https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_REPO_NAME} clonedir
 cd clonedir
 git reset
 git pull https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_REPO_NAME}
