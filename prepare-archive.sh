@@ -12,7 +12,7 @@ cd ..
 mkdir ${GH_PROJECT_NAME}
 mkdir ${GH_PROJECT_NAME}/libs
 cp $TRAVIS_BUILD_DIR/build/libs/*.jar ${GH_PROJECT_NAME}/libs/
-zip ${GH_PROJECT_NAME}.zip ${GH_PROJECT_NAME}/
+zip ${GH_PROJECT_NAME}.zip ${GH_PROJECT_NAME}/*
 cp ${GH_PROJECT_NAME}.zip clonedir/
 cd clonedir
 git add ${GH_PROJECT_NAME}.zip
