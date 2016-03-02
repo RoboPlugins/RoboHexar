@@ -5,7 +5,7 @@ git config --global user.email $GIT_AUTHOR_EMAIL
 cd /tmp
 git clone https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} clonedir
 cd clonedir
-git pull origin/master
+git pull
 cd ..
 mkdir ${GH_PROJECT_NAME}
 mkdir ${GH_PROJECT_NAME}/libs
