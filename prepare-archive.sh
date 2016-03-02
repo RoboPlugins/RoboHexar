@@ -30,6 +30,8 @@ cp -R $TRAVIS_BUILD_DIR/libs/*.jar /tmp/${GH_PROJECT_NAME}/libs/
 # Take a look in our zip directory
 echo "\n 5. Take a look in our zip directory:"
 ls -la /tmp/${GH_PROJECT_NAME}/libs/
+ls -la /tmp/${GH_PROJECT_NAME}/libs/libs
+ls -la /tmp
 
 # Zip it
 echo "\n 6. Zip it:"
