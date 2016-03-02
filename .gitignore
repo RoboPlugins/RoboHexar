@@ -7,7 +7,6 @@
 *.ear
 out/
 build/
-gradle/
 
 ##*.iml
 ## .idea directory exceptions.  Do not ignore.
