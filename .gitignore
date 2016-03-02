@@ -5,7 +5,14 @@
 *.jar
 *.war
 *.ear
-/out/
+out/
+build/
+gradle/
+
+##*.iml
+## .idea directory exceptions.  Do not ignore.
+##Shared run configurations
+!.idea/runConfigurations/
 
 # IDE
 .idea

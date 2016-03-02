@@ -1,0 +1,21 @@
+# This file is managed by Chef!
+# Override node.default["git_pairs_authors"] and node.default["git_pairs_domain"] in attributes/git_pairs.rb to modify.
+
+pairs:
+  br: Brian Radebaugh; brian.radebaugh
+  dc: David Capino; david.capino
+  ds: Diana Sutlief; diana.sutlief
+  ha: Hexar Anderson; hexar.anderson
+  jk: Jon Kennedy; jkennedy
+  jt: John Terrill; john.terrill
+  pl: Phil Leder; phil.leder
+  rm: Robert McEntire; robert.mcentire
+  sd: Stephen Dubois; stephen.dubois
+  tj: Tom Jones; tom.jones
+  wk: Will Kamp; wkamp
+ 
+email:
+  prefix:
+  domain: nordstrom.com
+
+global: true
