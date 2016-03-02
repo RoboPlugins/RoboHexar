@@ -17,4 +17,4 @@ build/
 .idea
 
 # Cache
-.gradle
+.gradle/
