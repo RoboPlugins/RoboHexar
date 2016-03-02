@@ -20,17 +20,16 @@ mkdir ${GH_PROJECT_NAME}/libs
 # Take a look.
 echo "\n 3. Take a look."
 ls $TRAVIS_BUILD_DIR/build/libs
-ls $TRAVIS_BUILD_DIR/libs/*.jar
+ls -la $TRAVIS_BUILD_DIR/libs/*.jar
 
 # copy jars to directory
 echo "\n 4. copy jars to directory."
-
-cp -R $TRAVIS_BUILD_DIR/build/libs* ${GH_PROJECT_NAME}/libs/
-cp -R $TRAVIS_BUILD_DIR/libs/*.jar ${GH_PROJECT_NAME}/libs/
+cp -R $TRAVIS_BUILD_DIR/build/libs* /tmp/${GH_PROJECT_NAME}/libs/
+cp -R $TRAVIS_BUILD_DIR/libs/*.jar /tmp/${GH_PROJECT_NAME}/libs/
 
 # Take a look in our zip directory
 echo "\n 5. Take a look in our zip directory:"
-ls ${GH_PROJECT_NAME}/libs/
+ls -la /tmp/${GH_PROJECT_NAME}/libs/
 
 # Zip it
 echo "\n 6. Zip it:"
@@ -46,7 +45,7 @@ cp ${GH_PROJECT_NAME}.zip .
 
 # Take a look.
 echo "\n 9. Take a look."
-ls
+ls -la
 
 # Add, commit, and push
 echo "\n 10. Add, commit, and push:"
