@@ -1,3 +1,5 @@
+# Travis CI Status: [![Build Status](https://travis-ci.org/RoboPlugins/RoboHexar.svg?branch=master)](https://travis-ci.org/RoboPlugins/RoboHexar)
+
 # Installation
 
 From within an Idea IDE, choose
