@@ -4,18 +4,8 @@ before_install:
   - chmod +x prepare-build.sh
   - ./prepare-build.sh 15.0.3
 after_success:
-  - cd /tmpl
-  - git clone https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} clonedir
-  - cd clonedir
-  - ls $TRAVIS_BUILD_DIR/build/libs/
-  - cp $TRAVIS_BUILD_DIR/build/libs/PainPoints-*.jar .
-  - git config --global user.name $GIT_AUTHOR_NAME
-  - git config --global user.email $GIT_AUTHOR_EMAIL
-  - git add PainPoints-*.jar
-  - git commit -m "[ci skip] Committed by Travis-CI"
-  - git push https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} 2>&1
-  - echo $GH_USER_NAME
-  - echo $GH_PROJECT_NAME
+  - chmod +x prepare-arhive.sh
+  - ./prepare-archive.sh
 env:
   global:
     - secure: "S5VwpnUZbK4nuyTJLlJdkQlTeSryGyNN+fgtl/h7sBNbYwj7q+zGLP+QiQubCKWWCsortriLoD6vt2kIDe1fPtPP5Uxm2vI8pqFJKVwkmompx6FQhPPJAuYkiht9spd0oHzyOEwt2cCzoJVGb7rsjpCniShKwR3Z50RljuCdfZma7A3DRuGAvkTjZw6EqwN5DcbzF1xJxO8Zy9Y+YU0+a4Via7lH+7PEm97NAX/Pby+YdVtX1C7+03BiHxA6pheVkUQJvAuEYi0HqsxSORPsy8dj6nrkfAFJciAj3/C5xo7FXY+yMf5sjpGEBIJtPoi1HMtZL8g5E6noi/s+N0s/WwuZM3Z1j+UJJ5MbTTqdIqWuZ0Ve+84cvmj5xDh62ZX9zoZsCpEVswFYa/Q6gQ9lFriMXV8RUZrsRic3UEQrxDw2qATH4YztZHNBHCxh2gbUA9+LfFAgXPi55MSQSSk3O7WhXwxZdy8HNKjAP+aRIxYf2MLj08xvuwyI+Xsr6XWdfTgVGVdeVd1wGsJ8z6vcnAhsfFRYUTqnTi/rLkhuURx2d7W53T/aV4VifxmeTvQnT+SXMxkbB47NeTR4NSUgxEqnHU/+Cfyim/qMjROWrH1eQ7Z9Ymn0jTsrOGMPetyRphJhdge6rf3eR2J8ZC/cAk18Z12lcB+rUVyGSKKqqf8="
