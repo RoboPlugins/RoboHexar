@@ -8,6 +8,9 @@ cache:
 before_install:
   - chmod +x fetchIdea.sh
   - ./fetchIdea.sh 15.0.3
+script:
+  - rm ~/.gradle/daemon/*/*.log
+  - rm ~/.gradle/daemon/*/*.bin.lock
 after_success:
   - ls -la
   - chmod +x $TRAVIS_BUILD_DIR/deploy-archive.sh
