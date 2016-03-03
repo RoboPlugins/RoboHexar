@@ -4,7 +4,7 @@ cache:
   directories:
   - $HOME/.gradle
   - $HOME/Tools
-  - $HOME/intellij_src
+  - $HOME/inte llij_src
 before_install:
   - chmod +x fetchIdea.sh
   - ./fetchIdea.sh 15.0.3
