@@ -38,27 +38,37 @@ ls -la /tmp/${GH_PROJECT_NAME}/libs/
 ls -la /tmp
 
 # Zip it
-echo "\n 6. Zip it:"
+echo "  6. Zip it:"
 zip ${GH_PROJECT_NAME}.zip ${GH_PROJECT_NAME}/*
 
-# Take a look.
-echo "\n 9. Take a look."
+# Take a look AT ZIP
+echo "  9. Take a look at the zip"
 ls -la
 
+#Leave if there is no zip.
+if [ -f ~/${GH_PROJECT_NAME}.zip ];
+then
+    echo "ZIP FOUND"
+else
+    echo "ZIP NOT FOUND ~~~ ERROR"
+    exit 1
+fi
+
+
 # Copy the new zip to the clone of the repo
-echo "\n 7. Copy the new zip to the clone of the repo:"
+echo "  7. Copy the new zip to the clone of the repo:"
 cp ~/${GH_PROJECT_NAME}.zip .
 
 # Go to clone we created earlier.
-echo "\n 8. Go to clone we created earlier.:"
+echo "  8. Go to clone we created earlier.:"
 cd /tmp/clonedir
 
 # Take a look.
-echo "\n 9. Take a look."
+echo "  9. Take a look."
 ls -la
 
 # Add, commit, and push
-echo "\n 10. Add, commit, and push:"
+echo "  10. Add, commit, and push:"
 git add ${GH_PROJECT_NAME}.zip
 git commit -a -m "Committed by Travis-CI"
 git push https://${GH_OAUTH_TOKEN}@${GH_REF} 2>&1
