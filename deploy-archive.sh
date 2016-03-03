@@ -22,8 +22,8 @@ ls $TRAVIS_BUILD_DIR/build/libs
 
 # copy jars to directory
 echo " 4. copy jars to directory."
-cp -R $TRAVIS_BUILD_DIR/build/libs* /tmp/${GH_PROJECT_NAME}/libs/
-cp -R $TRAVIS_BUILD_DIR/libs/*.jar /tmp/${GH_PROJECT_NAME}/libs/
+cp $TRAVIS_BUILD_DIR/build/libs* /tmp/${GH_PROJECT_NAME}/libs/
+cp $TRAVIS_BUILD_DIR/libs/*.jar /tmp/${GH_PROJECT_NAME}/libs/
 
 # Take a look in our zip directory
 echo "  5. Take a look in our zip directory:"
