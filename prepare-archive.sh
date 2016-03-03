@@ -30,7 +30,6 @@ cp -R $TRAVIS_BUILD_DIR/libs/*.jar /tmp/${GH_PROJECT_NAME}/libs/
 # Take a look in our zip directory
 echo "  5. Take a look in our zip directory:"
 ls -la /tmp/${GH_PROJECT_NAME}/libs/
-ls -la /tmp
 
 # Zip it
 echo "  6. Zip it:"
@@ -41,7 +40,7 @@ echo "  7. Take a look at the zip"
 ls -la
 
 #Leave if there is no zip.
-if [ -f ~/${GH_PROJECT_NAME}.zip ];
+if [ -f /tmp/${GH_PROJECT_NAME}.zip ];
 then
     echo "ZIP FOUND"
 else
@@ -49,10 +48,9 @@ else
     exit 1
 fi
 
-
 # Copy the new zip to the clone of the repo
 echo "  8. Copy the new zip to the clone of the repo:"
-cp ~/${GH_PROJECT_NAME}.zip .
+cp /tmp/${GH_PROJECT_NAME}.zip .
 
 # Go to clone we created earlier.
 echo "  9. Go to clone we created earlier.:"
