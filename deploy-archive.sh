@@ -59,6 +59,7 @@ echo "  10. Take a look."
 ls -la /tmp/
 
 # Add, commit, and push
+cd /tmp/clonedir
 echo "  11. Add, commit, and push:"
 git add ${GH_PROJECT_NAME}.zip
 git commit -a -m "Committed by Travis-CI"
