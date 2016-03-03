@@ -1,8 +1,13 @@
 language: java
 jdk: openjdk6
-before_install:
-  - chmod +x prepare-build.sh
-  - ./prepare-build.sh 15.0.3
+cache:
+  directories:
+  - $HOME/.gradle
+  - $HOME/Tools
+  - $HOME/intellij_src
+  before_install:
+    - chmod +x prepare-build.sh
+    - ./fetchIdea.sh 15.0.3
 after_success:
   - chmod +x prepare-archive.sh
   - ./prepare-archive.sh
