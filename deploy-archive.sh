@@ -56,7 +56,7 @@ cd /tmp/clonedir
 
 # Take a look.
 echo "  10. Take a look."
-ls -la
+ls -la /tmp/
 
 # Add, commit, and push
 echo "  11. Add, commit, and push:"
