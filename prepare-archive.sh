@@ -22,10 +22,8 @@ cd /tmp
 mkdir -p /tmp/${GH_PROJECT_NAME}/libs
 
 # Take a look.
-echo "\n 3. Take a look."
-cd /tmp
+echo "\n 3. Take a look for the jar file"
 ls $TRAVIS_BUILD_DIR/build/libs
-ls -la $TRAVIS_BUILD_DIR/libs/*.jar
 
 # copy jars to directory
 echo "\n 4. copy jars to directory."
