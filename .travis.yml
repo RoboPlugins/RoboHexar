@@ -8,7 +8,7 @@ cache:
 before_install:
   - chmod +x fetchIdea.sh
   - ./fetchIdea.sh 15.0.3
-deploy:
+after_success:
   - ls -la
   - chmod +x $TRAVIS_BUILD_DIR/deploy-archive.sh
   - $TRAVIS_BUILD_DIR/deploy-archive.sh
