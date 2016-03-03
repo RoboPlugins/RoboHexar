@@ -48,8 +48,7 @@ fi
 
 # Copy the new zip to the clone of the repo
 echo "  8. Copy the new zip to the clone of the repo:"
-cp /tmp/${GH_PROJECT_NAME}.zi
-p .
+cp /tmp/${GH_PROJECT_NAME}.zip .
 
 # Go to clone we created earlier.
 echo "  9. Go to clone we created earlier.:"
