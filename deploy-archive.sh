@@ -1,4 +1,5 @@
 #!/bin/bash
+
 git config --global user.name $GIT_AUTHOR_NAME
 git config --global user.email $GIT_AUTHOR_EMAIL
 
@@ -10,8 +11,6 @@ rm -rf /tmp/clonedir
 rm -rf /tmp/${GH_PROJECT_NAME}
 
 git clone https://${GH_OAUTH_TOKEN}@${GH_REF} /tmp/clonedir
-cd /tmp/clonedir
-git pull https://${GH_OAUTH_TOKEN}@${GH_REF}
 
 # Create Directories for zip
 echo "  2. Create Directories for zip"
@@ -30,9 +29,9 @@ cp -R $TRAVIS_BUILD_DIR/libs/*.jar /tmp/${GH_PROJECT_NAME}/libs/
 echo "  5. Take a look in our zip directory:"
 ls -la /tmp/${GH_PROJECT_NAME}/libs/
 
-# Zip it
+# Zip it UP!
 echo "  6. Zip it:"
-zip /tmp/${GH_PROJECT_NAME}.zip /tmp/${GH_PROJECT_NAME}/*
+zip /tmp/${GH_PROJECT_NAME}.zip /tmp/${GH_PROJECT_NAME}
 
 # Take a look AT ZIP
 echo "  7. Take a look at the zip"
