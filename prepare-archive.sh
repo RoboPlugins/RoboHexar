@@ -14,7 +14,7 @@ rm -rf ${GH_PROJECT_NAME}
 git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
 cd clonedir
 git reset
-git pull https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_REPO_NAME}
+git pull https://${GH_OAUTH_TOKEN}@${GH_REF}
 
 # Create Directories for zip
 echo "\n 2. Create Directories for zip"
@@ -58,4 +58,4 @@ ls -la
 echo "\n 10. Add, commit, and push:"
 git add ${GH_PROJECT_NAME}.zip
 git commit -a -m "Committed by Travis-CI"
-git push https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_REPO_NAME} 2>&1
+git push https://${GH_OAUTH_TOKEN}@${GH_REF} 2>&1
