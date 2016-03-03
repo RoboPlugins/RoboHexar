@@ -15,4 +15,4 @@ env:
     - GIT_AUTHOR_NAME: "Philip Leder"
     - GIT_AUTHOR_EMAIL: "phil@philipleder.com"
     - CI_HOME=`pwd`/$TRAVIS_REPO_SLUG
-    - GH_REF: "github.com/schlank/roboplugins.github.io"
+    - GH_REF: "github.com/roboplugins/roboplugins.github.io"
