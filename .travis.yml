@@ -6,7 +6,7 @@ cache:
   - $HOME/Tools
   - $HOME/intellij_src
 before_install:
-  - chmod +x prepare-build.sh
+  - chmod +x fetchIdea.sh
   - ./fetchIdea.sh 15.0.3
 before_deploy:
   - chmod +x prepare-archive.sh
