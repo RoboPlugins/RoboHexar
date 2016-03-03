@@ -44,7 +44,7 @@ zip ${GH_PROJECT_NAME}.zip ${GH_PROJECT_NAME}/*
 
 # Copy the new zip to the clone of the repo
 echo "\n 7. Copy the new zip to the clone of the repo:"
-cp ~${GH_PROJECT_NAME}.zip .
+cp ~/${GH_PROJECT_NAME}.zip .
 
 # Go to clone we created earlier.
 echo "\n 8. Go to clone we created earlier.:"
