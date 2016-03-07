@@ -1,18 +1,89 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "org.jetbrains.intellij" version "0.0.42"
+}
+
 group 'com.roboplugins'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'idea'
+//dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '15.0.4'
+//}
 
-sourceCompatibility = 1.5
+sourceCompatibility = javaVersion
+apply plugin: "org.jetbrains.intellij"
 
-repositories {
-    mavenCentral()
+intellij {
+    pluginName 'RoboHexar'
+    version ideaVersion
+    downloadSources Boolean.valueOf(downloadIdeaSources)
+    // FIXME: hack to support both IDEA 15 and IDEA 16.
+    // See https://github.com/intellij-rust/intellij-rust/issues/243
+    updateSinceUntilBuild = false
+    publish {
+        username publishUsername
+        password publishPassword
+        pluginId '8142'
+    }
+    sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+sourceSets {
+    main.java.srcDirs += 'src/main/java'
+    main {
+        java.srcDirs 'src/main/java'
+        resources.srcDirs 'resources', 'src/resources'
+    }
+    test {
+        java.srcDir 'tests/java'
+    }
 }
 
-task stage {
-    dependsOn assemble
+intellij {
+    pluginName 'RoboHexar'
+
+    version ideaVersion
+    downloadSources Boolean.valueOf(downloadIdeaSources)
+    // FIXME: hack to support both IDEA 15 and IDEA 16.
+    // See https://github.com/intellij-rust/intellij-rust/issues/243
+    updateSinceUntilBuild = true
+
+    publish {
+        username publishUsername
+        password publishPassword
+        pluginId '8182'
+    }
+    sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
+}
+/*
+ * Gets the version name from the latest Git tag
+ */
+def getVersionName() {
+    def stdout = new ByteArrayOutputStream()
+    try {
+        exec {
+            commandLine 'git', 'describe', '--tags'
+            standardOutput = stdout
+        }
+    } catch (ignored) {
+        return '0.0.0'
+    }
+
+    def version = stdout.toString().trim()
+    if (version.startsWith('v')) {
+        version = version.substring(1)
+    }
+    return version
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
 }

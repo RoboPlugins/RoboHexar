@@ -2,6 +2,7 @@ package com.smilingrob.plugin.robohexar;
 
 import com.intellij.codeInsight.daemon.impl.HighlightInfo;
 import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
+import com.smilingrob.plugin.robohexar.JavaDocError;
 
 import java.util.List;
 

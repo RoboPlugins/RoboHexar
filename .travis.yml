@@ -1,5 +1,8 @@
 language: java
-jdk: openjdk6
+jdk: openjdk7
+branches:
+  only:
+    - ci
 cache:
   directories:
   - $HOME/.gradle
