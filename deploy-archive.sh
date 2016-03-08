@@ -10,7 +10,7 @@ echo "  1. Checkout Repo to deploy to "
 cd /tmp
 rm -rf clonedir
 rm -rf ${GH_PROJECT_NAME}
-rm ${GH_PROJECT_NAME}.zip
+rm *.zip
 
 cd /tmp
 git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
@@ -26,7 +26,7 @@ git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
 
 # Copy the new zip to the clone of the repo
 echo "  8. Copy the new zip to the clone of the repo:"
-cp $TRAVIS_BUILD_DIR/build/disributions/${GH_PROJECT_NAME}*.zip /tmp/clonedir/
+cp $TRAVIS_BUILD_DIR/build/disributions/*.zip /tmp/clonedir/
 
 # Go to clone we created earlier.
 echo "  9. Go to clone we created earlier.:"
