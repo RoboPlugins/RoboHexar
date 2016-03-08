@@ -14,15 +14,15 @@ rm ${GH_PROJECT_NAME}.zip
 
 cd /tmp
 git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
-
-#Leave if there is no zip.
-if [ -f $TRAVIS_BUILD_DIR/build/disributions/${GH_PROJECT_NAME}*.zip ];
-then
-    echo "ZIP FOUND"
-else
-    echo "ZIP NOT FOUND ~~~ ERROR"
-    exit 1
-fi
+#
+##Leave if there is no zip.
+#if [ -f $TRAVIS_BUILD_DIR/build/disributions/${GH_PROJECT_NAME}*.zip ];
+#then
+#    echo "ZIP FOUND"
+#else
+#    echo "ZIP NOT FOUND ~~~ ERROR"
+#    exit 1
+#fi
 
 # Copy the new zip to the clone of the repo
 echo "  8. Copy the new zip to the clone of the repo:"
