@@ -26,7 +26,7 @@ git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
 
 # Copy the new zip to the clone of the repo
 echo "  8. Copy the new zip to the clone of the repo:"
-cp $TRAVIS_BUILD_DIR/build/disributions/*.zip /tmp/clonedir/
+cp $TRAVIS_BUILD_DIR/build/distributions/*.zip /tmp/clonedir/
 
 # Go to clone we created earlier.
 echo "  9. Go to clone we created earlier.:"
