@@ -24,9 +24,13 @@ git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
 #    exit 1
 #fi
 
+cd $TRAVIS_BUILD_DIR/build/distributions/
+distroFileName=$(ls -t -U | grep -m 1 "RoboHexar")
+#distroFileName=$(ls -t "RoboHexar"*.zip | head -n 1)
+
 # Copy the new zip to the clone of the repo
-echo "  8. Copy the new zip to the clone of the repo:"
-cp $TRAVIS_BUILD_DIR/build/distributions/*.zip /tmp/clonedir/
+echo "  8. move the new zip to the clone of the repo:"
+mv $TRAVIS_BUILD_DIR/build/distributions/$distroFileName /tmp/clonedir/${GH_PROJECT_NAME}.zip
 
 # Go to clone we created earlier.
 echo "  9. Go to clone we created earlier.:"
@@ -39,6 +43,6 @@ ls -la
 # Add, commit, and push
 echo "  11. Add, commit, and push:"
 pwd
-git add ${GH_PROJECT_NAME}*.zip
+git add ${GH_PROJECT_NAME}.zip
 git commit -a -m "Committed by Travis-CI"
 git push https://${GH_OAUTH_TOKEN}@${GH_REF} 2>&1
