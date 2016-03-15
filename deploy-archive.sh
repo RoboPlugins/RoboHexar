@@ -12,25 +12,17 @@ rm -rf clonedir
 rm -rf ${GH_PROJECT_NAME}
 rm *.zip
 
-cd /tmp
-git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
-#
-##Leave if there is no zip.
-#if [ -f $TRAVIS_BUILD_DIR/build/disributions/${GH_PROJECT_NAME}*.zip ];
-#then
-#    echo "ZIP FOUND"
-#else
-#    echo "ZIP NOT FOUND ~~~ ERROR"
-#    exit 1
-#fi
-
+# Get the zip distro bution file name until we get versioning working
 cd $TRAVIS_BUILD_DIR/build/distributions/
 distroFileName=$(ls -t -U | grep -m 1 "RoboHexar")
-#distroFileName=$(ls -t "RoboHexar"*.zip | head -n 1)
+
+# Clone the repo we distribute to
+cd /tmp
+git clone https://${GH_OAUTH_TOKEN}@${GH_REF} clonedir
 
 # Copy the new zip to the clone of the repo
 echo "  8. move the new zip to the clone of the repo:"
-mv $TRAVIS_BUILD_DIR/build/distributions/$distroFileName /tmp/clonedir/${GH_PROJECT_NAME}.zip
+mv $TRAVIS_BUILD_DIR/build/distributions/$distroFileName /tmp/clonedir/${GH_PROJECT_NAME}.jar
 
 # Go to clone we created earlier.
 echo "  9. Go to clone we created earlier.:"

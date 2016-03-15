@@ -15,6 +15,7 @@ script:
   - rm ~/.gradle/daemon/*/*.log
   - rm ~/.gradle/daemon/*/*.bin.lock
 install:
+  - ./gradlew clean
   - ./gradlew build
 after_success:
   - ls -la
