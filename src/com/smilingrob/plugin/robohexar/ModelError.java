@@ -42,11 +42,11 @@ public class ModelError {
     public String messageForError() {
         switch (mType) {
             case ACCESSORS_NOT_ALPHABETIZED:
-                return "Accessors not alphabetized in class.";
+                return "Hey dummy, accessors are not alphabetized in class.";
             case FIELDS_NOT_ALPHABETIZED:
-                return "Fields not alphabetized in class.";
+                return "Fields not alphabetized in class.  What is wrong with you.";
             case SERIALIZABLE:
-                return "Model classes should not implement Serializable.";
+                return "Model classes should not implement Serializable.  We are not animals.";
             default:
                 return "";
         }

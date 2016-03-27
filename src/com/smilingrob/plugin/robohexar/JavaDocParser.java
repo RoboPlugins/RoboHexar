@@ -81,12 +81,6 @@ public class JavaDocParser {
         return false;
     }
 
-    /**
-     * Determines whether or not the given method is a getter or a setter.
-     *
-     * @param psiMethodImpl method node.
-     * @return true if the given method is a getter or a setter.
-     */
     private boolean isGetterOrSetter(@NotNull PsiMethodImpl psiMethodImpl) {
         PsiElement nameElement = psiMethodImpl.getNameIdentifier();
         if (nameElement != null) {

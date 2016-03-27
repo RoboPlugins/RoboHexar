@@ -16,10 +16,6 @@ public class JavaDocError {
         MISSING_JAVA_DOC
     }
 
-    /**
-     * @param elementToTag place to highlight the Java Doc error.
-     * @param errorType type of Java Doc error.
-     */
     public JavaDocError(PsiElement elementToTag, ErrorType errorType) {
         this.elementToTag = elementToTag;
         this.errorType = errorType;
@@ -38,7 +34,7 @@ public class JavaDocError {
     public String messageForError() {
         switch (errorType) {
             case MISSING_JAVA_DOC:
-                return "Java Doc!";
+                return "How dare you not write a Java Doc!  Hexar is not pleased.";
             default:
                 return "";
         }
