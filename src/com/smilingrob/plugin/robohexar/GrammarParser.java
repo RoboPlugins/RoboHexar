@@ -26,7 +26,6 @@ public class GrammarParser {
     public List<GrammarError> parse(PsiElement psiElement) {
         ArrayList<GrammarError> errors = new ArrayList<GrammarError>();
 
-
         if (psiElement instanceof PsiDocComment) {
             PsiDocComment docComment = (PsiDocComment) psiElement;
 
