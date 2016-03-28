@@ -144,6 +144,12 @@ public class GrammarParser {
         return character >= 'a' && character <= 'z';
     }
 
+   /**
+   * Any sentence ending punctuation.  '.', '!', '?'.
+   *
+   * @param character to test.
+   * @return true if is an ending punctuation.
+   */
     static boolean isEndingPunctuation(char character) {
         return character == '.' || character == '!' || character == '?';
     }
