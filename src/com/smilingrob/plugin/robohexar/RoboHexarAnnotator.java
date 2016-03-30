@@ -66,46 +66,55 @@ public class RoboHexarAnnotator implements Annotator {
                             textattributes,
                             HighlighterTargetArea.EXACT_RANGE);
 
-                    editor.addEditorMouseListener(new EditorMouseListener() {
-                        @Override
-                        public void mousePressed(EditorMouseEvent editorMouseEvent) {
-                        }
-
-                        @Override
-                        public void mouseClicked(EditorMouseEvent editorMouseEvent) {
-                            showHint(editorMouseEvent);
-                        }
-
-                        @Override
-                        public void mouseReleased(EditorMouseEvent editorMouseEvent) {
-                        }
-
-                        @Override
-                        public void mouseEntered(EditorMouseEvent editorMouseEvent) {
-                            showHint(editorMouseEvent);
-                        }
-
-                        @Override
-                        public void mouseExited(EditorMouseEvent editorMouseEvent) {}
-
-                        private void showHint(EditorMouseEvent editorMouseEvent) {
-                            if (editorMouseEvent.getArea().equals(EditorMouseEventArea.EDITING_AREA)) {
-                                PsiIdentifier psiIdentifier = (PsiIdentifier) psiElement;
-                                TextRange textRange = EditorUtil.getSelectionInAnyMode(editor);
-                                TextRange elementTextRange = psiIdentifier.getTextRange();
-                                int mouseOffset = textRange.getStartOffset();
-                                int textStartOffset = elementTextRange.getStartOffset();
-                                int textEndOffset = elementTextRange.getEndOffset();
-                                if (mouseOffset >= textStartOffset && mouseOffset <= textEndOffset) {
-                                    HintManager.getInstance().showErrorHint(editor, message);
-                                }
-                            }
-                        }
-
-
-                    });
+                    editor.addEditorMouseListener(new RoboMouseListener(psiElement, message));
                 }
             }
         });
+    }
+    private class RoboMouseListener implements EditorMouseListener {
+
+        private PsiElement mPsiElement;
+        private String mMessage;
+
+        public RoboMouseListener(PsiElement psiElement, String message) {
+            mPsiElement = psiElement;
+            mMessage = message;
+        }
+
+        @Override
+        public void mousePressed(EditorMouseEvent editorMouseEvent) {
+        }
+
+        @Override
+        public void mouseClicked(EditorMouseEvent editorMouseEvent) {
+            showHint(editorMouseEvent);
+        }
+
+        @Override
+        public void mouseReleased(EditorMouseEvent editorMouseEvent) {
+        }
+
+        @Override
+        public void mouseEntered(EditorMouseEvent editorMouseEvent) {
+            showHint(editorMouseEvent);
+        }
+
+        @Override
+        public void mouseExited(EditorMouseEvent editorMouseEvent) {}
+
+        private void showHint(EditorMouseEvent editorMouseEvent) {
+            Editor editor = editorMouseEvent.getEditor();
+            if (editorMouseEvent.getArea().equals(EditorMouseEventArea.EDITING_AREA)) {
+                PsiIdentifier psiIdentifier = (PsiIdentifier) mPsiElement;
+                TextRange textRange = EditorUtil.getSelectionInAnyMode(editor);
+                TextRange elementTextRange = psiIdentifier.getTextRange();
+                int mouseOffset = textRange.getStartOffset();
+                int textStartOffset = elementTextRange.getStartOffset();
+                int textEndOffset = elementTextRange.getEndOffset();
+                if (mouseOffset >= textStartOffset && mouseOffset <= textEndOffset) {
+                    HintManager.getInstance().showErrorHint(editor, mMessage);
+                }
+            }
+        }
     }
 }

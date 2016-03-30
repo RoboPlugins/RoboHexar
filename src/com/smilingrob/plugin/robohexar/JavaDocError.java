@@ -34,7 +34,7 @@ public class JavaDocError {
     public String messageForError() {
         switch (errorType) {
             case MISSING_JAVA_DOC:
-                return "How dare you not write a Java Doc!  Hexar is not pleased.";
+                return "Java Doc!  Hexar is not pleased.";
             default:
                 return "";
         }
