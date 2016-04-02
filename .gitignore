@@ -9,3 +9,4 @@
 
 # IDE
 .idea
+build/production/RoboHexar/META-INF/plugin.xml

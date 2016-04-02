@@ -32,7 +32,7 @@ public class JavaDocParser {
                         && !psiMethod.isConstructor()) {
                     PsiElement name = psiMethod.getNameIdentifier();
                     if (name != null) {
-                        errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
+                        errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC_METHOD));
                     }
                 }
             }
@@ -41,7 +41,7 @@ public class JavaDocParser {
             if (psiClass.getDocComment() == null) {
                 PsiElement name = psiClass.getNameIdentifier();
                 if (name != null) {
-                    errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
+                    errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC_CLASS));
                 }
             }
         }
@@ -80,13 +80,12 @@ public class JavaDocParser {
         }
         return false;
     }
-
     /**
-     * Determines whether or not the given method is a getter or a setter.
-     *
-     * @param psiMethodImpl method node.
-     * @return true if the given method is a getter or a setter.
-     */
+    * Determines whether or not the given method is a getter or a setter.
+    *
+    * @param psiMethodImpl method node.
+    * @return true if the given method is a getter or a setter.
+    */
     private boolean isGetterOrSetter(@NotNull PsiMethodImpl psiMethodImpl) {
         PsiElement nameElement = psiMethodImpl.getNameIdentifier();
         if (nameElement != null) {

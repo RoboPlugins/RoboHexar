@@ -13,13 +13,10 @@ public class JavaDocError {
      * What kind of JavaDoc error is this highlighting.
      */
     public enum ErrorType {
-        MISSING_JAVA_DOC
+        MISSING_JAVA_DOC_METHOD,
+        MISSING_JAVA_DOC_CLASS
     }
 
-    /**
-     * @param elementToTag place to highlight the Java Doc error.
-     * @param errorType type of Java Doc error.
-     */
     public JavaDocError(PsiElement elementToTag, ErrorType errorType) {
         this.elementToTag = elementToTag;
         this.errorType = errorType;
@@ -37,8 +34,10 @@ public class JavaDocError {
      */
     public String messageForError() {
         switch (errorType) {
-            case MISSING_JAVA_DOC:
-                return "Java Doc!";
+            case MISSING_JAVA_DOC_METHOD:
+                return "Java Doc is Missing on this method.";
+            case MISSING_JAVA_DOC_CLASS:
+                return "Java Doc is Missing on this class.";
             default:
                 return "";
         }
