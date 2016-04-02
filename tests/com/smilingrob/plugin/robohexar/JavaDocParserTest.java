@@ -25,7 +25,7 @@ public class JavaDocParserTest extends LightCodeInsightFixtureTestCase {
         List<HighlightInfo> highlights = myFixture.doHighlighting();
 
         // THEN we should get some kind of Java Doc warning
-        String javaDocError = new JavaDocError(null, JavaDocError.ErrorType.MISSING_JAVA_DOC).messageForError();
+        String javaDocError = new JavaDocError(null, JavaDocError.ErrorType.MISSING_JAVA_DOC_METHOD).messageForError();
         for (HighlightInfo info : highlights) {
             if (javaDocError.equals(info.getDescription())) {
                 highlightedSomething = true;
