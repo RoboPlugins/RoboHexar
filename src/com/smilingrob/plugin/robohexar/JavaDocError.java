@@ -13,7 +13,8 @@ public class JavaDocError {
      * What kind of JavaDoc error is this highlighting.
      */
     public enum ErrorType {
-        MISSING_JAVA_DOC
+        MISSING_JAVA_DOC_METHOD,
+        MISSING_JAVA_DOC_CLASS
     }
 
     public JavaDocError(PsiElement elementToTag, ErrorType errorType) {
@@ -33,8 +34,10 @@ public class JavaDocError {
      */
     public String messageForError() {
         switch (errorType) {
-            case MISSING_JAVA_DOC:
-                return "Java Doc!  Hexar is not pleased.";
+            case MISSING_JAVA_DOC_METHOD:
+                return "Java Doc is Missing on this method.";
+            case MISSING_JAVA_DOC_CLASS:
+                return "Java Doc is Missing on this class.";
             default:
                 return "";
         }

@@ -32,7 +32,7 @@ public class JavaDocParser {
                         && !psiMethod.isConstructor()) {
                     PsiElement name = psiMethod.getNameIdentifier();
                     if (name != null) {
-                        errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
+                        errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC_METHOD));
                     }
                 }
             }
@@ -41,7 +41,7 @@ public class JavaDocParser {
             if (psiClass.getDocComment() == null) {
                 PsiElement name = psiClass.getNameIdentifier();
                 if (name != null) {
-                    errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC));
+                    errors.add(new JavaDocError(name, JavaDocError.ErrorType.MISSING_JAVA_DOC_CLASS));
                 }
             }
         }
