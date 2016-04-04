@@ -78,7 +78,9 @@ public class RoboHexarAnnotator implements Annotator {
      * @param message         The error message displayed when turned ON.
      */
     private void annotateElement(final boolean turnOnHighlight, final PsiElement psiElement, final String message) {
-
+        if(psiElement == null) {
+            return;
+        }
         ApplicationManager.getApplication().invokeLater(new Runnable() {
             public void run() {
                 Project project = psiElement.getProject();
